@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired
 import csv
 
 app = Flask(__name__)
+app.config['TESTING'] = True 
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 Bootstrap5(app)
 
@@ -60,6 +61,10 @@ def add_cafe():
 def cafes():
     list_of_rows = get_cafes()
     return render_template('cafes.html', cafes=list_of_rows)
+
+@app.route("/hello")
+def hello_world():
+    return "<p>Hello, !</p>"
 
 if __name__ == '__main__':
     app.run(debug=True)
