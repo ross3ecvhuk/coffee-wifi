@@ -5,12 +5,9 @@ from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 import csv
 
-
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 Bootstrap5(app)
-
 
 class CafeForm(FlaskForm):
     cafe = StringField('Cafe name', validators=[DataRequired()])
@@ -38,7 +35,6 @@ def get_cafes():
 def home():
     return render_template("index.html")
 
-
 @app.route('/add', methods=["GET", "POST"])
 def add_cafe():
     form = CafeForm()
@@ -60,12 +56,10 @@ def add_cafe():
     else:
         return render_template('add.html', form=form)
 
-
 @app.route('/cafes')
 def cafes():
     list_of_rows = get_cafes()
     return render_template('cafes.html', cafes=list_of_rows)
 
-
 if __name__ == '__main__':
-    app.run(debug=True, )
+    app.run(debug=True)
